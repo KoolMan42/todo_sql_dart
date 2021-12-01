@@ -5,17 +5,13 @@ part 'todo.g.dart';
 
 @JsonSerializable()
 class Todo {
-  static final Uuid _uuid = Uuid();
-  String id = _uuid.v4();
+  static const Uuid _uuid = Uuid();
+  String id;
 
-  String name = "";
-  bool isDone = false;
+  String name;
+  bool isDone;
 
-  Todo(String id, String name, bool isDone) {
-    this.id = id;
-    this.name = name;
-    this.isDone = isDone;
-  }
+  Todo(this.name, [String? id, this.isDone = false]): id = id ?? _uuid.v4();
 
   factory Todo.fromJson(Map<String, dynamic> json) => _$TodoFromJson(json);
 
